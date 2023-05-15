@@ -1,4 +1,4 @@
-package com.example.cinemawebapp;
+package com.cinema.cinemawebapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
