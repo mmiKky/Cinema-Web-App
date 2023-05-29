@@ -1,9 +1,8 @@
-package com.cinema.cinemawebapp.User;
+package com.cinema.cinemawebapp.user;
 
 import com.cinema.cinemawebapp.exceptions.UserNotFoundException;
-import com.cinema.cinemawebapp.User.models.LoginModel;
-import com.cinema.cinemawebapp.User.models.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.cinema.cinemawebapp.user.models.LoginModel;
+import com.cinema.cinemawebapp.user.models.User;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private final UserRepository userRepository;
 
-    @Autowired
     public UserController(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
@@ -26,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public boolean logIn(@RequestBody LoginModel loginModel) throws UserNotFoundException {
+    public @ResponseBody boolean logIn(@RequestBody LoginModel loginModel) throws UserNotFoundException {
         String foundPassword = userRepository.findPasswordByEmail(loginModel.getEmail());
 
         if(foundPassword == null)

@@ -1,4 +1,4 @@
-package com.cinema.cinemawebapp.User.models;
+package com.cinema.cinemawebapp.user.models;
 
 import jakarta.persistence.*;
 import lombok.Data;

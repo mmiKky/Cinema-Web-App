@@ -1,6 +1,6 @@
-package com.cinema.cinemawebapp.User;
+package com.cinema.cinemawebapp.user;
 
-import com.cinema.cinemawebapp.User.models.User;
+import com.cinema.cinemawebapp.user.models.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
