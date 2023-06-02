@@ -1,647 +1,495 @@
 {
   "cinema_hall": {
     "rows": 10,
-    "seatNrs": 12,
+    "seatNr": 12,
     "seats": [
       {
         "row": 1,
         "seatNr": 1,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 1,
         "seatNr": 2,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 1,
         "seatNr": 3,
-        "price": 15.99,
-        "double_seat": true
-      },
-      {
-        "row": 1,
-        "seatNr": 4,
-        "price": 15.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 1,
         "seatNr": 5,
-        "price": 12.99
-      },
-      {
-        "row": 1,
-        "seatNr": 6,
-        "price": 12.99
+        "price": 25.99,
+        "double_seat": true
       },
       {
         "row": 1,
         "seatNr": 7,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 1,
         "seatNr": 8,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 1,
         "seatNr": 9,
-        "price": 15.99,
-        "double_seat": true
+        "price": 18.99
       },
       {
         "row": 1,
         "seatNr": 10,
-        "price": 15.99,
-        "double_seat": true
+        "price": 18.99
       },
       {
         "row": 1,
         "seatNr": 11,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 1,
         "seatNr": 12,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 1,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 2,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 3,
-        "price": 13.99,
-        "double_seat": true
-      },
-      {
-        "row": 2,
-        "seatNr": 4,
-        "price": 13.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 2,
         "seatNr": 5,
-        "price": 10.99
-      },
-      {
-        "row": 2,
-        "seatNr": 6,
-        "price": 10.99
+        "price": 25.99,
+        "double_seat": true
       },
       {
         "row": 2,
         "seatNr": 7,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 8,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 9,
-        "price": 13.99,
-        "double_seat": true
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 10,
-        "price": 13.99,
-        "double_seat": true
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 11,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 2,
         "seatNr": 12,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 3,
         "seatNr": 1,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 3,
         "seatNr": 2,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 3,
         "seatNr": 3,
-        "price": 11.99,
-        "double_seat": true
-      },
-      {
-        "row": 3,
-        "seatNr": 4,
-        "price": 11.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 3,
         "seatNr": 5,
-        "price": 8.99
-      },
-      {
-        "row": 3,
-        "seatNr": 6,
-        "price": 8.99
-      },
-      {
-        "row": 3,
-        "seatNr": 7,
-        "price": 8.99
-      },
-      {
-        "row": 3,
-        "seatNr": 8,
-        "price": 8.99
-      },
-      {
-        "row": 3,
-        "seatNr": 9,
-        "price": 11.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 3,
-        "seatNr": 10,
-        "price": 11.99,
+        "seatNr": 7,
+        "price": 18.99
+      },
+      {
+        "row": 3,
+        "seatNr": 8,
+        "price": 18.99
+      },
+      {
+        "row": 3,
+        "seatNr": 9,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 3,
         "seatNr": 11,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 3,
         "seatNr": 12,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 1,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 2,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 3,
-        "price": 13.99,
-        "double_seat": true
-      },
-      {
-        "row": 4,
-        "seatNr": 4,
-        "price": 13.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 4,
         "seatNr": 5,
-        "price": 10.99
-      },
-      {
-        "row": 4,
-        "seatNr": 6,
-        "price": 10.99
+        "price": 25.99,
+        "double_seat": true
       },
       {
         "row": 4,
         "seatNr": 7,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 8,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 9,
-        "price": 13.99,
-        "double_seat": true
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 10,
-        "price": 13.99,
-        "double_seat": true
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 11,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 4,
         "seatNr": 12,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 5,
         "seatNr": 1,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 5,
         "seatNr": 2,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 5,
         "seatNr": 3,
-        "price": 15.99,
-        "double_seat": true
-      },
-      {
-        "row": 5,
-        "seatNr": 4,
-        "price": 15.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 5,
         "seatNr": 5,
-        "price": 12.99
-      },
-      {
-        "row": 5,
-        "seatNr": 6,
-        "price": 12.99
-      },
-      {
-        "row": 5,
-        "seatNr": 7,
-        "price": 12.99
-      },
-      {
-        "row": 5,
-        "seatNr": 8,
-        "price": 12.99
-      },
-      {
-        "row": 5,
-        "seatNr": 9,
-        "price": 15.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 5,
-        "seatNr": 10,
-        "price": 15.99,
+        "seatNr": 7,
+        "price": 25.99,
+        "double_seat": true
+      },
+      {
+        "row": 5,
+        "seatNr": 9,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 5,
         "seatNr": 11,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 5,
         "seatNr": 12,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 1,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 2,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 3,
-        "price": 11.99,
-        "double_seat": true
-      },
-      {
-        "row": 6,
-        "seatNr": 4,
-        "price": 11.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 6,
         "seatNr": 5,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 6,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 7,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 8,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 9,
-        "price": 11.99,
-        "double_seat": true
-      },
-      {
-        "row": 6,
-        "seatNr": 10,
-        "price": 11.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 6,
         "seatNr": 11,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 6,
         "seatNr": 12,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 1,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 2,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 3,
-        "price": 13.99,
-        "double_seat": true
-      },
-      {
-        "row": 7,
-        "seatNr": 4,
-        "price": 13.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 7,
         "seatNr": 5,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 6,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 7,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 8,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 9,
-        "price": 13.99,
-        "double_seat": true
-      },
-      {
-        "row": 7,
-        "seatNr": 10,
-        "price": 13.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 7,
         "seatNr": 11,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 7,
         "seatNr": 12,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 8,
         "seatNr": 1,
-        "price": 12.99
-      },
-      {
-        "row": 8,
-        "seatNr": 2,
-        "price": 12.99
-      },
-      {
-        "row": 8,
-        "seatNr": 3,
-        "price": 15.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 8,
-        "seatNr": 4,
-        "price": 15.99,
+        "seatNr": 3,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 8,
         "seatNr": 5,
-        "price": 12.99
-      },
-      {
-        "row": 8,
-        "seatNr": 6,
-        "price": 12.99
-      },
-      {
-        "row": 8,
-        "seatNr": 7,
-        "price": 12.99
-      },
-      {
-        "row": 8,
-        "seatNr": 8,
-        "price": 12.99
-      },
-      {
-        "row": 8,
-        "seatNr": 9,
-        "price": 15.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 8,
-        "seatNr": 10,
-        "price": 15.99,
+        "seatNr": 7,
+        "price": 25.99,
+        "double_seat": true
+      },
+      {
+        "row": 8,
+        "seatNr": 9,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 8,
         "seatNr": 11,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 8,
         "seatNr": 12,
-        "price": 12.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 1,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 2,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 3,
-        "price": 13.99,
-        "double_seat": true
-      },
-      {
-        "row": 9,
-        "seatNr": 4,
-        "price": 13.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 9,
         "seatNr": 5,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 6,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 7,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 8,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 9,
-        "price": 13.99,
-        "double_seat": true
-      },
-      {
-        "row": 9,
-        "seatNr": 10,
-        "price": 13.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 9,
         "seatNr": 11,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 9,
         "seatNr": 12,
-        "price": 10.99
+        "price": 18.99
       },
       {
         "row": 10,
         "seatNr": 1,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 10,
         "seatNr": 2,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 10,
         "seatNr": 3,
-        "price": 11.99,
-        "double_seat": true
-      },
-      {
-        "row": 10,
-        "seatNr": 4,
-        "price": 11.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 10,
         "seatNr": 5,
-        "price": 8.99
-      },
-      {
-        "row": 10,
-        "seatNr": 6,
-        "price": 8.99
-      },
-      {
-        "row": 10,
-        "seatNr": 7,
-        "price": 8.99
-      },
-      {
-        "row": 10,
-        "seatNr": 8,
-        "price": 8.99
-      },
-      {
-        "row": 10,
-        "seatNr": 9,
-        "price": 11.99,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 10,
-        "seatNr": 10,
-        "price": 11.99,
+        "seatNr": 7,
+        "price": 25.99,
+        "double_seat": true
+      },
+      {
+        "row": 10,
+        "seatNr": 9,
+        "price": 25.99,
         "double_seat": true
       },
       {
         "row": 10,
         "seatNr": 11,
-        "price": 8.99
+        "price": 18.99
       },
       {
         "row": 10,
         "seatNr": 12,
-        "price": 8.99
+        "price": 18.99
       }
     ]
   }
