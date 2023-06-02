@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @Controller
 @RequestMapping("/users")
 public class UserController {
@@ -21,6 +23,17 @@ public class UserController {
         userRepository.save(newUser);
 
         return HttpStatus.OK;
+    }
+
+    @PutMapping
+    public @ResponseBody HttpStatus updateUser(@RequestBody User updatedUser) throws UserNotFoundException {
+        Optional<User> foundUser = userRepository.findById(updatedUser.getId());
+
+        if(foundUser.isPresent()){
+            userRepository.save(updatedUser);
+            return HttpStatus.OK;
+        }else
+            throw new UserNotFoundException();
     }
 
     @GetMapping("/login")
