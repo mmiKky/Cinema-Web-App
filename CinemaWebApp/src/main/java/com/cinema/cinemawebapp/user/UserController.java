@@ -1,9 +1,10 @@
 package com.cinema.cinemawebapp.user;
 
+import com.cinema.cinemawebapp.exceptions.SameUserEmailException;
 import com.cinema.cinemawebapp.exceptions.UserNotFoundException;
 import com.cinema.cinemawebapp.user.models.LoginModel;
 import com.cinema.cinemawebapp.user.models.User;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,30 +20,43 @@ public class UserController {
     }
 
     @PostMapping
-    public @ResponseBody HttpStatus addUser(@RequestBody User newUser) {
-        userRepository.save(newUser);
+    public ResponseEntity<User> addUser(@RequestBody User newUser) throws SameUserEmailException {
+        if(checkIfEmailExistsAlready(newUser.getEmail()))
+            throw new SameUserEmailException();
 
-        return HttpStatus.OK;
+        User createdUser = userRepository.save(newUser);
+
+        createdUser.setPassword("");
+        return ResponseEntity.ok(createdUser);
     }
 
     @PutMapping
-    public @ResponseBody HttpStatus updateUser(@RequestBody User updatedUser) throws UserNotFoundException {
+    public ResponseEntity<User> updateUser(@RequestBody User updatedUser) throws UserNotFoundException, SameUserEmailException {
         Optional<User> foundUser = userRepository.findById(updatedUser.getId());
 
         if(foundUser.isPresent()){
+            if(checkIfEmailExistsAlready(updatedUser.getEmail()))
+                throw new SameUserEmailException();
+
             userRepository.save(updatedUser);
-            return HttpStatus.OK;
+
+            updatedUser.setPassword("");
+            return ResponseEntity.ok(updatedUser);
         }else
             throw new UserNotFoundException();
     }
 
     @GetMapping("/login")
-    public @ResponseBody boolean logIn(@RequestBody LoginModel loginModel) throws UserNotFoundException {
+    public ResponseEntity<Boolean> logIn(@RequestBody LoginModel loginModel) throws UserNotFoundException {
         String foundPassword = userRepository.findPasswordByEmail(loginModel.getEmail());
 
         if(foundPassword == null)
             throw new UserNotFoundException();
 
-        return loginModel.getPassword().equals(foundPassword);
+        return ResponseEntity.ok(loginModel.getPassword().equals(foundPassword));
+    }
+
+    private boolean checkIfEmailExistsAlready(String email){
+        return userRepository.findAllByEmail(email).size() > 0;
     }
 }

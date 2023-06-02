@@ -1,6 +1,11 @@
 package com.cinema.cinemawebapp.screening;
 
+import com.cinema.cinemawebapp.cinemahall.CinemaHallRepository;
+import com.cinema.cinemawebapp.exceptions.CinemaHallNotFoundException;
+import com.cinema.cinemawebapp.exceptions.MovieNotFoundException;
 import com.cinema.cinemawebapp.exceptions.ScreeningNotFoundException;
+import com.cinema.cinemawebapp.movie.MovieRepository;
+import com.cinema.cinemawebapp.movie.models.Movie;
 import com.cinema.cinemawebapp.screening.models.Screening;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,9 +18,13 @@ import java.util.Optional;
 public class ScreeningController {
 
     private final ScreeningRepository screeningRepository;
+    private final MovieRepository movieRepository;
+    private final CinemaHallRepository cinemaHallRepository;
 
-    public ScreeningController(ScreeningRepository screeningRepository) {
+    public ScreeningController(ScreeningRepository screeningRepository, MovieRepository movieRepository, CinemaHallRepository cinemaHallRepository) {
         this.screeningRepository = screeningRepository;
+        this.movieRepository = movieRepository;
+        this.cinemaHallRepository = cinemaHallRepository;
     }
 
     @GetMapping
@@ -30,12 +39,16 @@ public class ScreeningController {
     }
 
     @PostMapping
-    public ResponseEntity<Screening> addScreening(@RequestBody Screening newScreening){
+    public ResponseEntity<Screening> addScreening(@RequestBody Screening newScreening) throws MovieNotFoundException, CinemaHallNotFoundException {
+        validateNewScreening(newScreening);
+
         return ResponseEntity.ok(screeningRepository.save(newScreening));
     }
 
     @PutMapping
-    public ResponseEntity<Screening> updateScreening(@RequestBody Screening updatedScreening) throws ScreeningNotFoundException {
+    public ResponseEntity<Screening> updateScreening(@RequestBody Screening updatedScreening) throws ScreeningNotFoundException, CinemaHallNotFoundException, MovieNotFoundException {
+        validateNewScreening(updatedScreening);
+
         Optional<Screening> foundScreening = screeningRepository.findById(updatedScreening.getId());
 
         if (foundScreening.isPresent())
@@ -49,5 +62,12 @@ public class ScreeningController {
         screeningRepository.deleteById(id);
 
         return ResponseEntity.ok(null);
+    }
+
+    private void validateNewScreening(Screening screening) throws MovieNotFoundException, CinemaHallNotFoundException {
+        if(movieRepository.findById(screening.getMovieId()).isEmpty())
+            throw new MovieNotFoundException();
+        if(cinemaHallRepository.findById(screening.getCinemaHallId()).isEmpty())
+            throw new CinemaHallNotFoundException();
     }
 }

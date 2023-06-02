@@ -2,7 +2,6 @@ package com.cinema.cinemawebapp.movie;
 
 import com.cinema.cinemawebapp.exceptions.MovieNotFoundException;
 import com.cinema.cinemawebapp.movie.models.Movie;
-import org.apache.coyote.Response;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
