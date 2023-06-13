@@ -1,0 +1,11 @@
+form{
+  display: flex;
+  flex-direction: column;
+
+}
+
+mat-card{
+  min-width: 25vw;
+  max-height: 80vh;
+  overflow: hidden;
+}

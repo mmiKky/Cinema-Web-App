@@ -1,0 +1,28 @@
+<mat-card class="mat-background-primary mat-card-main">
+  <mat-card-header>
+    <mat-card-title>Repertuar</mat-card-title>
+    <mat-card-subtitle *ngIf="(chosenDate$|async) as chosenDate" class="d-flex d-flex-row">
+      <span (click)="decrementDate()"><mat-icon>arrow_back</mat-icon></span>
+      <span>{{ dateToString(chosenDate) }}</span>
+      <span (click)="incrementDate()">
+        <mat-icon>arrow_forward</mat-icon>
+      </span>
+    </mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-card class="repertoire-item" *ngFor="let entry of repertoire">
+      <div>
+        <mat-card-title>{{ entry.movie.title }}</mat-card-title>
+        <p *ngFor="let screening of entry.screenings">
+          <button mat-raised-button (click)="handleClick(screening.id)">
+            {{ screening.startTime }}
+          </button>
+        </p>
+      </div>
+      <img [src]="entry.movie.imageUrl" alt="" />
+    </mat-card>
+    <mat-error *ngIf="repertoire.length === 0">
+      There are no screenings planned on this day!
+    </mat-error>
+  </mat-card-content>
+</mat-card>

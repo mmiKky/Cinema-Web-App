@@ -1,0 +1,39 @@
+<mat-card class="mat-background-primary">
+  <mat-card-header>
+    <mat-card-title>Welcome{{!isUserLoggedIn ? '' : (' ' + (user$ | async)?.name)}}!</mat-card-title>
+    <mat-card-subtitle
+      >{{!isUserLoggedIn ? 'Log in now to manage your reservations' : (user$ | async)?.email}}</mat-card-subtitle
+    >
+  </mat-card-header>
+  <mat-card-content>
+    <ng-container *ngIf="isLoading"><mat-spinner color="accent"></mat-spinner></ng-container>
+    <ng-container *ngIf="(user$ | async) as user">
+        <h3>Your reservations:</h3>
+          <mat-expansion-panel *ngFor="let reservation of reservations$ | async" >
+            <mat-expansion-panel-header >
+              <mat-panel-title>
+                {{reservation.movieTitle}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{reservation.screeningDate}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            <mat-list>
+              <mat-list-item><mat-icon>room</mat-icon>Cinema hall: {{reservation.cinemaHallName}}</mat-list-item>
+              <mat-list-item><mat-icon>access_time</mat-icon>Start time: {{reservation.screeningStartTime}}</mat-list-item>
+              <mat-list-item><mat-icon>event_seat</mat-icon> Reserved Seats:</mat-list-item>
+              <mat-list-item *ngFor="let seat of reservation.seats">
+                Row{{seat.row}} - Nr{{seat.seatNr}}
+              </mat-list-item>
+
+            </mat-list>
+            <mat-action-row>
+              <button mat-raised-button (click)="cancelReservation(reservation)" color="warn">Cancel</button>
+            </mat-action-row>
+          </mat-expansion-panel>
+      <mat-card-actions><button mat-stroked-button color="accent" (click)="logout()">Logout</button></mat-card-actions>
+    </ng-container>
+    <app-login-form *ngIf="!isUserLoggedIn && !showRegisterForm && !isLoading" (loadingEvent)="toggleLoading()" (toggleFormEvent)="toggleForm()"></app-login-form>
+    <app-registration-form *ngIf="!isUserLoggedIn && showRegisterForm && !isLoading" (loadingEvent)="toggleLoading()" (toggleFormEvent)="toggleForm()"></app-registration-form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,28 @@
+mat-grid-list {
+  width: 50%;
+  background-color: black;
+  padding: 20px;
+  margin: 10vh auto auto;
+}
+
+#seatPicker {
+  width: 100%;
+}
+#selectedSeatsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 50px;
+  margin-top: 20px;
+}
+#selectedSeatsSection img {
+  width: 30vw;
+}
+
+.legend-square{
+  width:25px;
+  height: 30px;
+  display: block;
+  margin-right: 3px;
+  margin-left: 10px;
+}

@@ -14,4 +14,5 @@ public class Movie {
     private String description;
     private String genre;
     private int runtimeMinutes;
+    private String imageUrl;
 }

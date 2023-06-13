@@ -2,6 +2,8 @@ package com.cinema.cinemawebapp.reservation.models;
 
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class ReservationInfo {
     private Reservation reservation;
@@ -14,4 +16,5 @@ public class ReservationInfo {
     private int movieId;
     private String movieTitle;
     private String CinemaHallName;
+    private List<Seat> seats;
 }

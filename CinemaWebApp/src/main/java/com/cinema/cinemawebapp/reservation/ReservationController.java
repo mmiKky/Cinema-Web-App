@@ -2,6 +2,7 @@ package com.cinema.cinemawebapp.reservation;
 
 import com.cinema.cinemawebapp.cinemahall.CinemaHallRepository;
 import com.cinema.cinemawebapp.cinemahall.models.CinemaHall;
+import com.cinema.cinemawebapp.cinemahall.models.SeatDTO;
 import com.cinema.cinemawebapp.exceptions.*;
 import com.cinema.cinemawebapp.movie.MovieRepository;
 import com.cinema.cinemawebapp.movie.models.Movie;
@@ -41,7 +42,7 @@ public class ReservationController {
     }
 
     @PostMapping()
-    public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation){
+    public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation) {
         return ResponseEntity.ok(reservationRepository.save(reservation));
     }
 
@@ -55,50 +56,66 @@ public class ReservationController {
         Movie movie;
         CinemaHall cinemaHall;
 
-        for(Reservation reservation: reservationRepository.findAll()){
-            if(reservation.getUserId() != userId)
+        for (Reservation reservation : reservationRepository.findAll()) {
+            if (reservation.getUserId() != userId)
                 continue;
 
             user = userRepository.findById(userId).orElseThrow(UserNotFoundException::new);
             screening = screeningRepository.findById(reservation.getScreeningId()).orElseThrow(ScreeningNotFoundException::new);
             movie = movieRepository.findById(screening.getMovieId()).orElseThrow(MovieNotFoundException::new);
-            cinemaHall = cinemaHallRepository.findById(screening.getId()).orElseThrow(CinemaHallNotFoundException::new);
+            cinemaHall = cinemaHallRepository.findById(screening.getCinemaHallId()).orElseThrow(CinemaHallNotFoundException::new);
 
-            ReservationInfo reservationInfo = new ReservationInfo();
-            reservationInfo.setReservation(reservation);
-            reservationInfo.setUserName(user.getName());
-            reservationInfo.setUserSurname(user.getSurname());
-            reservationInfo.setUserEmail(user.getEmail());
-            reservationInfo.setScreeningDate(screening.getDate());
-            reservationInfo.setScreeningStartTime(screening.getStartTime());
-            reservationInfo.setScreeningEndTime(screening.getEndTime());
-            reservationInfo.setMovieId(movie.getId());
-            reservationInfo.setMovieTitle(movie.getTitle());
-            reservationInfo.setCinemaHallName(cinemaHall.getName());
-            usersReservationInfos.add(reservationInfo);
+            Optional<ReservationInfo> ri = usersReservationInfos.stream().filter(
+                    reservationInfo -> reservationInfo.getReservation().getUserId() == reservation.getUserId() &&
+                            reservationInfo.getReservation().getScreeningId() == reservation.getScreeningId()).findFirst();
+
+
+            Seat s = new Seat();
+            s.setSeatNr(reservation.getSeatNr());
+            s.setRow(reservation.getSeatRow());
+            s.setPrice(reservation.getPrice());
+
+
+            if (ri.isEmpty()) {
+                ReservationInfo reservationInfo = new ReservationInfo();
+                reservationInfo.setReservation(reservation);
+                reservationInfo.setUserName(user.getName());
+                reservationInfo.setUserSurname(user.getSurname());
+                reservationInfo.setUserEmail(user.getEmail());
+                reservationInfo.setScreeningDate(screening.getDate());
+                reservationInfo.setScreeningStartTime(screening.getStartTime());
+                reservationInfo.setScreeningEndTime(screening.getEndTime());
+                reservationInfo.setMovieId(movie.getId());
+                reservationInfo.setMovieTitle(movie.getTitle());
+                reservationInfo.setCinemaHallName(cinemaHall.getName());
+                ArrayList<Seat> seatArrayList = new ArrayList<>();
+                seatArrayList.add(s);
+                reservationInfo.setSeats(seatArrayList);
+                usersReservationInfos.add(reservationInfo);
+            } else {
+                ri.get().getSeats().add(s);
+            }
         }
 
         return ResponseEntity.ok(usersReservationInfos);
     }
 
-    @GetMapping("/hall/{hallId}")
-    public ResponseEntity<Iterable<Seat>> getAllReservedSeatsByHallId(@PathVariable int hallId) {
+    @GetMapping("/screening/{screeningId}")
+    public ResponseEntity<Iterable<Seat>> getAllReservedSeatsByScreeningId(@PathVariable int screeningId) {
         List<Seat> reservedSeatsList = new ArrayList<>();
         Optional<Screening> screening;
 
-        for(Reservation reservation: reservationRepository.findAll()){
+        for (Reservation reservation : reservationRepository.findReservationsByScreeningId(screeningId)) {
             screening = screeningRepository.findById(reservation.getScreeningId());
 
-            if(screening.isEmpty()) // just return empty list
+            if (screening.isEmpty()) // just return empty list
                 break;
 
-            if(screening.get().getCinemaHallId() == hallId){
-                var reservedSeat = new Seat();
-                reservedSeat.setSeatRow(reservation.getSeatRow());
-                reservedSeat.setSeatNr(reservation.getSeatNr());
 
-                reservedSeatsList.add(reservedSeat);
-            }
+            var reservedSeat = new Seat();
+            reservedSeat.setRow(reservation.getSeatRow());
+            reservedSeat.setSeatNr(reservation.getSeatNr());
+            reservedSeatsList.add(reservedSeat);
         }
 
         return ResponseEntity.ok(reservedSeatsList);

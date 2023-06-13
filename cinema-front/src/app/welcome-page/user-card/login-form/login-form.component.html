@@ -1,0 +1,31 @@
+<form [formGroup]="loginData" (ngSubmit)="login()" >
+    <mat-form-field>
+        <mat-label>Enter email</mat-label>
+        <input
+                [formControl]="loginData.controls.email"
+                matInput
+                type="email"
+                name="email"
+                id="login_email"
+        />
+        <mat-error *ngIf="loginData.hasError('required', 'email')">
+            Please enter your new password
+        </mat-error>
+        <mat-icon matSuffix>@</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter password</mat-label>
+        <input
+                [formControl]="loginData.controls.password"
+                matInput
+                type="password"
+                name="password"
+                id="login_password"
+        />
+    </mat-form-field>
+    <button type="submit" color="primary" mat-raised-button >Login</button>
+    <div id="google-button"></div>
+    <button type="button" mat-button color="primary" (click)="toggleForm()">
+        I want to create an account
+    </button>
+</form>

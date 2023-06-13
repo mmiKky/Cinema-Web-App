@@ -1,0 +1,111 @@
+<ng-container
+  ><button id="backButton" (click)="goBack()" mat-mini-fab>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <mat-grid-list cols="2">
+    <mat-grid-tile
+      ><mat-card>
+        <mat-card-content
+          ><form
+            [formGroup]="paymentData"
+            (ngSubmit)="reserve()"
+            class="d-flex d-flex-column"
+          >
+            <mat-form-field>
+              <mat-label>Enter email</mat-label>
+              <input
+                [formControl]="paymentData.controls.email"
+                matInput
+                type="email"
+                name="email"
+                id="email"
+              />
+              <mat-error *ngIf="paymentData.hasError('required', 'email')">
+                Please enter your email
+              </mat-error>
+              <mat-icon matSuffix>at</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Confirm email</mat-label>
+              <input
+                [formControl]="paymentData.controls.emailConfirmation"
+                matInput
+                type="email"
+                name="email"
+                id="confirm-email"
+              />
+              <mat-error *ngIf="paymentData.hasError('required', 'email')">
+                Please enter your email
+              </mat-error>
+              <mat-icon matSuffix>at</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>Enter name</mat-label>
+              <input
+                [formControl]="paymentData.controls.name"
+                matInput
+                type="text"
+                name="name"
+                id="name"
+              />
+              <mat-error *ngIf="paymentData.hasError('required', 'name')">
+                Please enter your name
+              </mat-error>
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+            <textarea name="area" id="area" cols="30" rows="4" readonly>
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</textarea
+            >
+            <div>
+              <mat-label>Accept terms of agreement</mat-label>
+              <input
+                [formControl]="paymentData.controls.acceptance"
+                type="checkbox"
+                name="name"
+                id="acceptance"
+              />
+              <mat-error
+                *ngIf="paymentData.hasError('requiredTrue', 'acceptance')"
+              >
+                Please accept the rules
+              </mat-error>
+            </div>
+            <button
+              [disabled]="!paymentData.valid"
+              type="submit"
+              color="primary"
+              mat-raised-button
+            >
+              Reserve
+            </button>
+          </form></mat-card-content
+        >
+      </mat-card></mat-grid-tile
+    >
+    <mat-grid-tile
+      ><mat-card
+        *ngIf="(order$ | async)?.screening as screening"
+        id="selectedSeatsSection"
+      >
+        <mat-card-title>{{ screening.movie.title }}</mat-card-title>
+        <mat-card-subtitle
+          >Cinema hall: {{ screening.cinemaHall.name }} <br />
+          Date: {{ screening.date }} <br />
+          Start: {{ screening.startTime }}</mat-card-subtitle
+        >
+        <mat-card-content
+          ><p>Chosen seats:</p>
+          <mat-list>
+            <mat-list-item *ngFor="let seat of (order$ | async)?.selectedSeats">
+              <mat-icon>event_seat</mat-icon> Seat {{ seat.seatNr }} row
+              {{ seat.row }} - {{ seat.price }} PLN
+            </mat-list-item>
+          </mat-list></mat-card-content
+        >
+        <mat-card-footer
+          ><h4>Total: {{ getCurrentTotal() }} ,-</h4></mat-card-footer
+        >
+      </mat-card></mat-grid-tile
+    >
+  </mat-grid-list>
+</ng-container>

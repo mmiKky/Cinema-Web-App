@@ -8,4 +8,5 @@ public class Seat {
     private int seatNr;
     private boolean isDouble;
     private double price;
+    private boolean available;
 }

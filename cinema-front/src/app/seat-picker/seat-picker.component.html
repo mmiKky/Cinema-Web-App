@@ -1,0 +1,67 @@
+<div [class]="(isPortrait$ | async) ? 'd-flex d-flex-column' : 'd-flex'">
+  <button id="backButton" (click)="goBack()" color="accent" mat-mini-fab>
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <mat-grid-list cols="{{ cinemaHallDimensions.length }}" rowHeight="5:6">
+    <mat-grid-tile colspan="4"></mat-grid-tile>
+    <mat-grid-tile
+      [style.background]="'lightgrey'"
+      [style.color]="'black'"
+      colspan="17"
+      >EKRAN</mat-grid-tile
+    >
+    <mat-grid-tile colspan="4"></mat-grid-tile>
+    <ng-container *ngFor="let row of cinemaHallRows">
+      <ng-container *ngFor="let nr of cinemaHallDimensions">
+        <mat-grid-tile
+          *ngIf="seatArray[row]?.[nr]; else emptyTile"
+          [style.background]="
+            seatArray[row][nr].available
+              ? isSelectedSeat(seatArray[row][nr])
+                ? 'gold'
+                : 'green'
+              : 'lightgrey'
+          "
+          (click)="selectSeat(seatArray[row][nr])"
+          >{{ nr }}</mat-grid-tile
+        >
+        <ng-template #emptyTile
+          ><mat-grid-tile>{{
+            nr === 0 || nr === 24 ? row : ""
+          }}</mat-grid-tile></ng-template
+        >
+      </ng-container>
+    </ng-container>
+    <mat-grid-tile id="legend" colspan="25">
+        <div class="legend-square" [style.background-color]="'green'"></div>
+        <div>Available</div>
+        <div class="legend-square" [style.background-color]="'lightgrey'"></div>
+        <div>Unavailable</div>
+        <div class="legend-square" [style.background-color]="'gold'"></div>
+        <div>Chosen</div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <div *ngIf="order$ | async as order" id="selectedSeatsSection">
+    <div>
+      <img
+        *ngIf="order.screening?.movie?.imageUrl"
+        [src]="order.screening?.movie?.imageUrl"
+        alt=""
+      />
+      <h3>
+        {{ order.screening?.movie?.title }}
+        {{ "(" + order.screening?.movie?.runtimeMinutes + "min)" }}
+      </h3>
+    </div>
+    <p>Wybrane miejsca: {{ getSelectedSeatsSummary() }}</p>
+    <h4>Current total: {{ getCurrentTotal() }} ,-</h4>
+    <button
+      [disabled]="!!order?.selectedSeats && order.selectedSeats.length === 0"
+      (click)="goToCheckout()"
+      mat-flat-button
+      color="primary"
+    >
+      Proceed
+    </button>
+  </div>
+</div>

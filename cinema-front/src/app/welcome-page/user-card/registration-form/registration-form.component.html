@@ -1,0 +1,27 @@
+<form
+        [formGroup]="registrationData"
+        (ngSubmit)="registerUser()"
+>
+    <mat-form-field>
+        <mat-label>Enter name and first name</mat-label>
+        <input [formControl]="registrationData.controls.name" matInput type="text" name="name" id="name" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter email</mat-label>
+        <input [formControl]="registrationData.controls.email" matInput type="email" name="email" id="email" />
+        <mat-icon matSuffix>@</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Enter password</mat-label>
+        <input [formControl]="registrationData.controls.password" matInput type="password" name="password" id="password" />
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Confirm password</mat-label>
+        <input [formControl]="registrationData.controls.passwordConfirmation" matInput type="password" name="password2" id="password2" />
+    </mat-form-field>
+    <button type="submit" color="primary" mat-raised-button>Submit</button>
+    <div id="google-button"></div>
+    <button mat-button color="primary" (click)="toggleForm()">
+        I already have an account
+    </button>
+</form>

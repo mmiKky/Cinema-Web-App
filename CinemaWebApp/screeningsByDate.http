@@ -1,0 +1,2 @@
+GET http://localhost:8080/screenings/date/2023-06-03
+Content-Type: application/json

@@ -1,0 +1,14 @@
+form{
+  display: flex;
+  flex-direction: column;
+
+}
+
+mat-card{
+  min-width: 25vw;
+}
+
+mat-expansion-panel-header{
+  overflow: hidden;
+  white-space: nowrap;
+}

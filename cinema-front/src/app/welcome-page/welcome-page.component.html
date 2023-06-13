@@ -1,16 +1,14 @@
-<h1>Welcome!</h1>
-<mat-grid-list cols="2" rowHeight="1:1">
-  <mat-grid-tile>1
-  <mat-card class="mat-background-primary">
-    <mat-card-header>
-      <mat-card-title>Shiba Inu</mat-card-title>
-      <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content>
-      <p>This card indeterminates progress bar.</p>
-      <p></p>
-    </mat-card-content>
-  </mat-card>
-  </mat-grid-tile>
-  <mat-grid-tile>2</mat-grid-tile>
-</mat-grid-list>
+<ng-container *ngIf="!(isPortrait$ | async); else accordion"
+  ><mat-grid-list cols="5" rowHeight="1:2">
+    <mat-grid-tile colspan="3">
+      <app-repertoire></app-repertoire>
+    </mat-grid-tile>
+    <mat-grid-tile colspan="2">
+      <app-user-card></app-user-card>
+    </mat-grid-tile>
+  </mat-grid-list>
+</ng-container>
+<ng-template #accordion>
+  <app-user-card></app-user-card>
+  <app-repertoire></app-repertoire>
+</ng-template>
