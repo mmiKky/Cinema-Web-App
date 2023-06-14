@@ -8,6 +8,7 @@ export interface User {
 }
 
 export interface Reservation {
+  id: number;
   seats: Seat[];
   userName: string;
   userSurname: string;

@@ -2,6 +2,7 @@
   max-height: 80vh;
   overflow-y: scroll;
   overflow-x: visible;
+  margin-top:10vh;
 }
 
 .repertoire-item{
@@ -15,4 +16,9 @@
 .repertoire-item > img{
   width: 256px;
   margin-left: 50px;
+}
+
+.screening-times{
+  display: grid;
+  grid-template-columns: auto auto auto;
 }

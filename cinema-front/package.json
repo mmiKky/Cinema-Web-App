@@ -25,6 +25,7 @@
     "dayjs": "^1.11.8",
     "ngx-material-timepicker": "^5.5.5",
     "rxjs": "~7.8.0",
+    "tippy.js": "^6.3.7",
     "tslib": "^2.3.0",
     "zone.js": "~0.12.0"
   },

@@ -1,6 +1,13 @@
 import { Component } from '@angular/core';
 import { UserService } from '../../common/services/user.service';
-import { filter, mergeMap, Observable, tap } from 'rxjs';
+import {
+  filter,
+  forkJoin,
+  mergeMap,
+  Observable,
+  tap,
+  withLatestFrom,
+} from 'rxjs';
 import { Reservation, User } from '../../common/model/user';
 import { OrderService } from '../../common/services/order.service';
 
@@ -48,6 +55,15 @@ export class UserCardComponent {
   }
 
   cancelReservation(reservation: Reservation) {
-    // this.orderService.cancelReservation(reservation);
+    let observablearray = [];
+    for (let seat of reservation.seats) {
+      observablearray.push(this.orderService.cancelReservation(seat.id!));
+    }
+    forkJoin(observablearray)
+      .pipe(withLatestFrom(this.user$))
+      .subscribe(([_, user]) => {
+        if (user)
+          this.reservations$ = this.orderService.getReservationsForUser(user);
+      });
   }
 }

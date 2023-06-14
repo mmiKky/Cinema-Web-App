@@ -15,7 +15,7 @@ import { LayoutManagerService } from '../common/services/layout-manager.service'
 })
 export class SeatPickerComponent implements OnDestroy {
   readonly cinemaHallDimensions = [...Array(25).keys()];
-  readonly cinemaHallRows = [...Array(5).keys()];
+  readonly cinemaHallRows = [...Array(12).keys()];
   seatArrayFilled = false;
   isPortrait$: Observable<boolean>;
   selectSeat(s: Seat) {

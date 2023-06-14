@@ -143,13 +143,16 @@
       <!--        </mat-list-item>-->
       <!--      </mat-list>-->
       <mwl-calendar-week-view
+              id="calendar"
         *ngIf="screenings$ | async as screenings"
         [events]="mapScreeningToCalendarEvent(screenings)"
         [viewDate]="viewDate"
         [dayStartHour]="10"
         [hourSegmentHeight]="15"
         [weekStartsOn]="1"
+        (eventClicked)="handleEventClicked($event)"
       ></mwl-calendar-week-view>
     </div>
+    <button id="tippyButton"></button>
   </mat-tab>
 </mat-tab-group>

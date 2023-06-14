@@ -12,3 +12,8 @@ mat-expansion-panel-header{
   overflow: hidden;
   white-space: nowrap;
 }
+
+.seats-list{
+  max-height: 25vh;
+  overflow-y: scroll;
+}

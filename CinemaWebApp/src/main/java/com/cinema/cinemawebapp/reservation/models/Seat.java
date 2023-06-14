@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class Seat {
+    private int id;
     private int row;
     private int seatNr;
     private double price;

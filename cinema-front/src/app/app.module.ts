@@ -34,6 +34,7 @@ import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 import { CalendarModule, DateAdapter } from 'angular-calendar';
 import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { TippyDirective } from './common/directives/tippy.directive';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     RegistrationFormComponent,
     DashboardComponent,
     ConfirmationDialogComponent,
+    TippyDirective,
   ],
   imports: [
     BrowserModule,

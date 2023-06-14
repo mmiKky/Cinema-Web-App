@@ -89,7 +89,7 @@ export class OrderService {
     }
   }
 
-  cancelReservation(reservationId: string) {
-    this.http.delete(ORDER_ENDPOINT + '/' + reservationId);
+  cancelReservation(reservationId: number) {
+    return this.http.delete(ORDER_ENDPOINT + '/' + reservationId);
   }
 }
