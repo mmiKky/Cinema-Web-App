@@ -1,0 +1,123 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.9.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.9.xsd">
+    <changeSet author="admin (generated)" id="1686725495551-1">
+        <createTable tableName="CinemaHall">
+            <column autoIncrement="true" name="Id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="SeatsFileName" type="VARCHAR(500)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="Name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-2">
+        <createTable tableName="Movie">
+            <column autoIncrement="true" name="Id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="Title" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Description" type="VARCHAR(1000)"/>
+            <column name="Genre" type="VARCHAR(255)"/>
+            <column name="RuntimeMinutes" type="INT"/>
+            <column name="ImageUrl" type="VARCHAR(256)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-3">
+        <createTable tableName="Movie_SEQ">
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-4">
+        <createTable tableName="Reservation">
+            <column autoIncrement="true" name="Id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="UserId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ScreeningId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SeatRow" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SeatNr" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Price" type="DECIMAL(19, 2)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-5">
+        <createTable tableName="Screening">
+            <column autoIncrement="true" name="Id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="MovieId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CinemaHallId" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Date" type="date"/>
+            <column name="StartTime" type="time"/>
+            <column name="EndTime" type="time"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-6">
+        <createTable tableName="User">
+            <column autoIncrement="true" name="Id" type="INT">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="Name" type="VARCHAR(255)"/>
+            <column name="Surname" type="VARCHAR(255)"/>
+            <column name="Email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="Password" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-7">
+        <createTable tableName="User_SEQ">
+            <column name="next_val" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-8">
+        <createIndex indexName="FKReservatio218997" tableName="Reservation">
+            <column name="ScreeningId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-9">
+        <createIndex indexName="FKReservatio879885" tableName="Reservation">
+            <column name="UserId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-10">
+        <createIndex indexName="FKScreening152330" tableName="Screening">
+            <column name="CinemaHallId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-11">
+        <createIndex indexName="FKScreening989052" tableName="Screening">
+            <column name="MovieId"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-12">
+        <addForeignKeyConstraint baseColumnNames="ScreeningId" baseTableName="Reservation" constraintName="FKReservatio218997" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="Id" referencedTableName="Screening" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-13">
+        <addForeignKeyConstraint baseColumnNames="UserId" baseTableName="Reservation" constraintName="FKReservatio879885" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="Id" referencedTableName="User" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-14">
+        <addForeignKeyConstraint baseColumnNames="CinemaHallId" baseTableName="Screening" constraintName="FKScreening152330" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="Id" referencedTableName="CinemaHall" validate="true"/>
+    </changeSet>
+    <changeSet author="admin (generated)" id="1686725495551-15">
+        <addForeignKeyConstraint baseColumnNames="MovieId" baseTableName="Screening" constraintName="FKScreening989052" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="Id" referencedTableName="Movie" validate="true"/>
+    </changeSet>
+</databaseChangeLog>
