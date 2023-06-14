@@ -13,6 +13,7 @@ import com.cinema.cinemawebapp.screening.ScreeningRepository;
 import com.cinema.cinemawebapp.screening.models.Screening;
 import com.cinema.cinemawebapp.user.UserRepository;
 import com.cinema.cinemawebapp.user.models.User;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,13 @@ public class ReservationController {
     }
 
     @PostMapping()
-    public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation) {
+    public ResponseEntity<Reservation> addReservation(@RequestBody Reservation reservation) throws ReservationAlreadyExistException {
+        int reservedSeatsCount = reservationRepository.countReservationsByScreeningIdAndSeatNrAndSeatRow(
+                reservation.getScreeningId(), reservation.getSeatNr(), reservation.getSeatRow());
+
+        if(reservedSeatsCount != 0)
+            throw new ReservationAlreadyExistException();
+
         return ResponseEntity.ok(reservationRepository.save(reservation));
     }
 

@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
     List<Reservation> findReservationsByScreeningId(int screeningId);
+    int countReservationsByScreeningIdAndSeatNrAndSeatRow(int screeningId, int seatNr, int seatRow);
 }
