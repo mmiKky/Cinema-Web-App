@@ -20,6 +20,7 @@ import { CalendarDateFormatter, CalendarEvent } from 'angular-calendar';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as dayjs from 'dayjs';
 import { DOCUMENT } from '@angular/common';
+import tippy from 'tippy.js';
 
 enum GENRE_LIST {
   'HORROR',
@@ -83,10 +84,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   deleteMovie(movieId: number) {
-    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: {},
+    });
     dialogRef.afterClosed().subscribe((result: boolean) => {
       if (result) {
         this.movieService.deleteMovie(movieId);
+        this.movies$ = this.movieService.getMovies();
       }
     });
   }
@@ -113,7 +117,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
   editScreening(screening: Screening) {}
 
   deleteScreening(screening: Screening) {
-    this.screeningService.deleteScreening(screening.id).subscribe();
+    this.screeningService.deleteScreening(screening.id).subscribe(() => {
+      this.screenings$ = this.screeningService.getAllScreenings();
+    });
   }
 
   mapScreeningToCalendarEvent(screenings: Screening[] | null): CalendarEvent[] {
@@ -130,6 +136,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           end: dayjs(startDate)
             .add(screening.movie.runtimeMinutes, 'm')
             .toDate(),
+          meta: { screening },
         };
       }) ?? []
     );
@@ -143,7 +150,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.document.body.classList.remove('dark-theme');
   }
 
-  handleEventClicked($event: CalendarEvent): void {}
+  handleEventClicked($event: {
+    event: CalendarEvent;
+    sourceEvent: MouseEvent | KeyboardEvent;
+  }): void {
+    console.log('bonk');
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent);
+    dialogRef.afterClosed().subscribe((result) => {
+      if (result) {
+        this.deleteScreening($event.event.meta.screening);
+      }
+    });
+  }
 
   protected readonly GENRE_LIST = GENRE_LIST;
   viewDate = new Date();

@@ -46,6 +46,13 @@ public class ReservationController {
         return ResponseEntity.ok(reservationRepository.save(reservation));
     }
 
+    @DeleteMapping("/{reservationId}")
+    public ResponseEntity<Boolean> deleteReservation(@PathVariable int reservationId) throws ReservationNotFoundException {
+        var foundReservation = reservationRepository.findById(reservationId).orElseThrow(ReservationNotFoundException::new);
+        reservationRepository.delete(foundReservation);
+        return ResponseEntity.ok(true);
+    }
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<Iterable<ReservationInfo>> getAllReservationsByUserId(@PathVariable int userId)
             throws UserNotFoundException, ScreeningNotFoundException, MovieNotFoundException, CinemaHallNotFoundException {
@@ -74,6 +81,7 @@ public class ReservationController {
             s.setSeatNr(reservation.getSeatNr());
             s.setRow(reservation.getSeatRow());
             s.setPrice(reservation.getPrice());
+            s.setId(reservation.getId());
 
 
             if (ri.isEmpty()) {

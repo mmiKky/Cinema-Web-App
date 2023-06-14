@@ -13,13 +13,15 @@
     <mat-card class="repertoire-item" *ngFor="let entry of repertoire">
       <div>
         <mat-card-title>{{ entry.movie.title }}</mat-card-title>
-        <p *ngFor="let screening of entry.screenings">
+        <mat-card-subtitle>{{entry.movie.runtimeMinutes}}min</mat-card-subtitle>
+        <div class="screening-times"><p *ngFor="let screening of entry.screenings">
           <button mat-raised-button (click)="handleClick(screening.id)">
             {{ screening.startTime }}
           </button>
-        </p>
+        </p></div>
+
       </div>
-      <img [src]="entry.movie.imageUrl" alt="" />
+      <img height="180" width="260" [src]="entry.movie.imageUrl" alt="" />
     </mat-card>
     <mat-error *ngIf="repertoire.length === 0">
       There are no screenings planned on this day!

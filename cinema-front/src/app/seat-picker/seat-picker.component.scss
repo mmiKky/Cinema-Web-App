@@ -19,6 +19,11 @@ mat-grid-list {
   width: 30vw;
 }
 
+#selectedSeatsSection span{
+  text-wrap: balance;
+  max-width: 35vw;
+}
+
 .legend-square{
   width:25px;
   height: 30px;

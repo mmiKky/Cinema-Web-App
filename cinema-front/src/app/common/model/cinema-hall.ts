@@ -4,6 +4,7 @@ export interface CinemaHall {
   name: string;
 }
 export interface Seat {
+  id?: number;
   row: number;
   seatNr: number;
   isDouble: boolean;
