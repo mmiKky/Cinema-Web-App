@@ -1,0 +1,13 @@
+.git
+.svn
+
+# ignore maven generated files
+target/
+
+# ignore IDE
+.idea/
+.vscode/
+
+*.log
+*.tmp
+*.swp

@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  cinema-mysql:
+    image: "mysql"
+    container_name: cinema-mysql
+    volumes: 
+      - mysql-data:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret-pw-123
+    ports:
+      - 3306:3306
+
+  cinema-backend:
+    build: ./CinemaWebApp
+    container_name: cinema-backend
+    environment:
+      - DB_SERVER=cinema-mysql
+      - DB_NAME=Cinema
+      - DB_USER=root
+      - DB_PASSWORD=secret-pw-123
+    ports:
+      - 8080:8080
+    links:
+      - cinema-mysql
+
+    # cinema-frontend:    
+
+volumes:
+  mysql-data:
